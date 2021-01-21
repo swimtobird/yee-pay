@@ -10,7 +10,9 @@ namespace Swimtobird\YeePay;
 
 
 use InvalidArgumentException;
+use Swimtobird\YeePay\Contracts\GatewayInterface;
 use Swimtobird\YeePay\Contracts\PayGatewayInterface;
+use Swimtobird\YeePay\Contracts\ProfitSharingGatewayInterface;
 use Swimtobird\YeePay\Utils\Config;
 
 /**
@@ -22,13 +24,21 @@ use Swimtobird\YeePay\Utils\Config;
  * @method  PayGatewayInterface query(array $params)
  * @method  PayGatewayInterface cancel(array $params)
  * @method  PayGatewayInterface success()
+ *
+ * @method  ProfitSharingGatewayInterface profitSharing(array $params)
+ * @method  ProfitSharingGatewayInterface queryProfitSharing(array $params)
+ * @method  ProfitSharingGatewayInterface finishProfitSharing(array $params)
+ * @method  ProfitSharingGatewayInterface addReceiver(array $params)
+ * @method  ProfitSharingGatewayInterface removeReceiver(array $params)
+ * @method  ProfitSharingGatewayInterface refundProfitSharing(array $params)
+ * @method  ProfitSharingGatewayInterface queryRefundProfitSharing(array $params)
  */
 class PayProvider
 {
     protected $config;
 
     /**
-     * @var PayGatewayInterface
+     * @var GatewayInterface
      */
     protected $gateway;
 
@@ -41,9 +51,9 @@ class PayProvider
 
     /**
      * @param $gateway
-     * @return PayGatewayInterface
+     * @return GatewayInterface
      */
-    public function createGateway($gateway): PayGatewayInterface
+    public function createGateway($gateway): GatewayInterface
     {
         list($platform, $gateway) = explode('_', $gateway, 2);
 
@@ -51,7 +61,7 @@ class PayProvider
 
 
         if (!class_exists($class)) {
-            throw new InvalidArgumentException("gateway {$gateway} is not supported");
+            throw new InvalidArgumentException("Sorry,Gateway {$gateway} is not supported now.");
         }
 
         return new $class($this->config);
@@ -60,10 +70,14 @@ class PayProvider
     /**
      * @param $method
      * @param array $arguments
-     * @return PayGatewayInterface
+     * @return GatewayInterface
      */
-    public function __call($method, array $arguments): PayGatewayInterface
+    public function __call($method, array $arguments): GatewayInterface
     {
+        if (!method_exists($this->gateway,$method)){
+            throw new InvalidArgumentException("Sorry,it is not supported {$method} method now.");
+        }
+
         return $this->gateway->$method($arguments[0]);
     }
 }
