@@ -70,9 +70,9 @@ class PayProvider
     /**
      * @param $method
      * @param array $arguments
-     * @return GatewayInterface
+     * @return mixed
      */
-    public function __call($method, array $arguments): GatewayInterface
+    public function __call($method, array $arguments)
     {
         if (!method_exists($this->gateway,$method)){
             throw new InvalidArgumentException("Sorry,it is not supported {$method} method now.");
