@@ -30,7 +30,7 @@ class ProfitSharing extends AbstractGateway implements ProfitSharingGatewayInter
 
     const ADD_RECEIVER_URL = [
         'method' => 'post',
-        'url' => '/rest/v1.0/divide/apply'
+        'url' => '/rest/v2.0/mer/register/contribute/merchant'
     ];
 
     const REFUND_PROFIT_SHARING_URL = [
@@ -45,17 +45,31 @@ class ProfitSharing extends AbstractGateway implements ProfitSharingGatewayInter
 
     public function profitSharing(array $params): array
     {
-        return $this->request(self::PROFIT_SHARING_URL,$params);
+        $payload = [
+            'parentMerchantNo' => $this->config->get('parent_merchant_no'),
+            'merchantNo' => $this->config->get('merchant_no'),
+        ];
+
+        $payload = array_merge($payload, $params);
+
+        return $this->request(self::PROFIT_SHARING_URL, $payload);
     }
 
     public function queryProfitSharing(array $params): array
     {
-        return $this->request(self::QUERY_PROFIT_SHARING_URL,$params);
+        $payload = [
+            'parentMerchantNo' => $this->config->get('parent_merchant_no'),
+            'merchantNo' => $this->config->get('merchant_no'),
+        ];
+
+        $payload = array_merge($payload, $params);
+
+        return $this->request(self::QUERY_PROFIT_SHARING_URL, $payload);
     }
 
     public function addReceiver(array $params): array
     {
-        return $this->request(self::ADD_RECEIVER_URL,$params);
+        return $this->request(self::ADD_RECEIVER_URL, $params);
     }
 
     public function removeReceiver(array $params): array
@@ -65,16 +79,39 @@ class ProfitSharing extends AbstractGateway implements ProfitSharingGatewayInter
 
     public function finishProfitSharing(array $params): array
     {
-        return $this->request(self::FINISH_PROFIT_SHARING_URL,$params);
+        $payload = [
+            'parentMerchantNo' => $this->config->get('parent_merchant_no'),
+            'merchantNo' => $this->config->get('merchant_no'),
+        ];
+
+        $payload = array_merge($payload, $params);
+
+        return $this->request(self::FINISH_PROFIT_SHARING_URL, $payload);
     }
 
     public function refundProfitSharing(array $params): array
     {
-        return $this->request(self::REFUND_PROFIT_SHARING_URL,$params);
+        $payload = [
+            'parentMerchantNo' => $this->config->get('parent_merchant_no'),
+            'merchantNo' => $this->config->get('merchant_no'),
+            'divideRequestId' => $this->config->get('merchant_no')
+        ];
+
+        $payload = array_merge($payload, $params);
+
+        return $this->request(self::REFUND_PROFIT_SHARING_URL, $payload);
     }
 
     public function queryRefundProfitSharing(array $params): array
     {
-        return $this->request(self::QUERY_REFUND_PROFIT_SHARING_URL,$params);
+        $payload = [
+            'parentMerchantNo' => $this->config->get('parent_merchant_no'),
+            'merchantNo' => $this->config->get('merchant_no'),
+            'divideRequestId' => $this->config->get('merchant_no')
+        ];
+
+        $payload = array_merge($payload, $params);
+
+        return $this->request(self::QUERY_REFUND_PROFIT_SHARING_URL, $payload);
     }
 }

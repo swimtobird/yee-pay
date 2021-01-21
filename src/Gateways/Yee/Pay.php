@@ -38,7 +38,14 @@ class Pay extends AbstractGateway implements PayGatewayInterface
      */
     public function pay(array $params): array
     {
-        return $this->request(self::PAY_URL, $params);
+        $payload = [
+            'parentMerchantNo' => $this->config->get('parent_merchant_no'),
+            'merchantNo' => $this->config->get('merchant_no'),
+        ];
+
+        $payload = array_merge($payload, $params);
+
+        return $this->request(self::PAY_URL, $payload);
     }
 
     /**
@@ -47,7 +54,14 @@ class Pay extends AbstractGateway implements PayGatewayInterface
      */
     public function cancel(array $params): array
     {
-        return $this->request(self::CANCAL_URL,$params);
+        $payload = [
+            'parentMerchantNo' => $this->config->get('parent_merchant_no'),
+            'merchantNo' => $this->config->get('merchant_no'),
+        ];
+
+        $payload = array_merge($payload, $params);
+
+        return $this->request(self::CANCAL_URL,$payload);
     }
 
     /**
@@ -56,7 +70,14 @@ class Pay extends AbstractGateway implements PayGatewayInterface
      */
     public function query(array $params): array
     {
-        return $this->request(self::QUERY_URL,$params);
+        $payload = [
+            'parentMerchantNo' => $this->config->get('parent_merchant_no'),
+            'merchantNo' => $this->config->get('merchant_no'),
+        ];
+
+        $payload = array_merge($payload, $params);
+
+        return $this->request(self::QUERY_URL,$payload);
     }
 
     /**
@@ -65,7 +86,14 @@ class Pay extends AbstractGateway implements PayGatewayInterface
      */
     public function refund(array $params): array
     {
-        return $this->request(self::REFUND_URL,$params);
+        $payload = [
+            'parentMerchantNo' => $this->config->get('parent_merchant_no'),
+            'merchantNo' => $this->config->get('merchant_no'),
+        ];
+
+        $payload = array_merge($payload, $params);
+
+        return $this->request(self::REFUND_URL,$payload);
     }
 
     /**
