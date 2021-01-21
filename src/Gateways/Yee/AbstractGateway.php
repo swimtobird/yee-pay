@@ -10,11 +10,10 @@ namespace Swimtobird\YeePay\Gateways\Yee;
 
 use DateTime;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
 use Swimtobird\YeePay\Contracts\GatewayInterface;
-use Swimtobird\YeePay\Exceptions\GatewayException;
+use Swimtobird\YeePay\Exceptions\GatewayRequestException;
 use Swimtobird\YeePay\Utils\Config;
 
 abstract class AbstractGateway implements GatewayInterface
@@ -75,11 +74,11 @@ abstract class AbstractGateway implements GatewayInterface
         $result = json_decode($response->getBody(),true);
 
         if ($response->getStatusCode()>=500){
-            throw new GatewayException('Yee GatewayError:Server is 500');
+            throw new GatewayRequestException('Yee GatewayError:Server is 500');
         }
 
         if (isset($result['state']) && 'FAILURE' === $result['state']){
-            throw new GatewayException(
+            throw new GatewayRequestException(
                 sprintf(
                 'Yee Gateway Error: %s, %s',
                 $result['error']['code'] ?? '',

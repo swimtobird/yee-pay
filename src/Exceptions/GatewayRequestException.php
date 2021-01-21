@@ -11,7 +11,7 @@ namespace Swimtobird\YeePay\Exceptions;
 
 use Throwable;
 
-class GatewayException extends \RuntimeException
+class GatewayRequestException extends \RuntimeException
 {
     public function __construct($message = "", $code = 0, Throwable $previous = null)
     {

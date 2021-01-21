@@ -10,25 +10,25 @@ namespace Swimtobird\YeePay;
 
 
 use InvalidArgumentException;
-use Swimtobird\YeePay\Contracts\GatewayInterface;
+use Swimtobird\YeePay\Contracts\PayGatewayInterface;
 use Swimtobird\YeePay\Utils\Config;
 
 /**
  * Class PayProvider
  * @package Swimtobird\YeePay
  *
- * @method  GatewayInterface pay(array $params)
- * @method  GatewayInterface refund(array $params)
- * @method  GatewayInterface query(array $params)
- * @method  GatewayInterface cancel(array $params)
- * @method  GatewayInterface success()
+ * @method  PayGatewayInterface pay(array $params)
+ * @method  PayGatewayInterface refund(array $params)
+ * @method  PayGatewayInterface query(array $params)
+ * @method  PayGatewayInterface cancel(array $params)
+ * @method  PayGatewayInterface success()
  */
 class PayProvider
 {
     protected $config;
 
     /**
-     * @var GatewayInterface
+     * @var PayGatewayInterface
      */
     protected $gateway;
 
@@ -41,9 +41,9 @@ class PayProvider
 
     /**
      * @param $gateway
-     * @return GatewayInterface
+     * @return PayGatewayInterface
      */
-    public function createGateway($gateway): GatewayInterface
+    public function createGateway($gateway): PayGatewayInterface
     {
         list($platform, $gateway) = explode('_', $gateway, 2);
 
@@ -60,9 +60,9 @@ class PayProvider
     /**
      * @param $method
      * @param array $arguments
-     * @return GatewayInterface
+     * @return PayGatewayInterface
      */
-    public function __call($method, array $arguments): GatewayInterface
+    public function __call($method, array $arguments): PayGatewayInterface
     {
         return $this->gateway->$method($arguments[0]);
     }

@@ -8,8 +8,9 @@
 
 namespace Swimtobird\YeePay\Gateways\Yee;
 
+use Swimtobird\YeePay\Contracts\PayGatewayInterface;
 
-class Pay extends AbstractGateway
+class Pay extends AbstractGateway implements PayGatewayInterface
 {
     const PAY_URL = [
         'method' => 'post',
