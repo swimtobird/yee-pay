@@ -15,39 +15,39 @@ class ProfitSharing extends AbstractGateway implements ProfitSharingGatewayInter
 {
     const PROFIT_SHARING_URL = [
         'method' => 'post',
-        'url' => '/rest/v1.0/divide/apply'
+        'url'    => '/rest/v1.0/divide/apply'
     ];
 
     const FINISH_PROFIT_SHARING_URL = [
         'method' => 'post',
-        'url' => '/rest/v1.0/divide/complete'
+        'url'    => '/rest/v1.0/divide/complete'
     ];
 
     const QUERY_PROFIT_SHARING_URL = [
         'method' => 'get',
-        'url' => '/rest/v1.0/divide/query'
+        'url'    => '/rest/v1.0/divide/query'
     ];
 
     const ADD_RECEIVER_URL = [
         'method' => 'post',
-        'url' => '/rest/v2.0/mer/register/contribute/merchant'
+        'url'    => '/rest/v2.0/mer/register/contribute/merchant'
     ];
 
     const REFUND_PROFIT_SHARING_URL = [
         'method' => 'post',
-        'url' => '/rest/v1.0/divide/back'
+        'url'    => '/rest/v1.0/divide/back'
     ];
 
     const QUERY_REFUND_PROFIT_SHARING_URL = [
         'method' => 'get',
-        'url' => '/rest/v1.0/divide/back/query'
+        'url'    => '/rest/v1.0/divide/back/query'
     ];
 
     public function profitSharing(array $params): array
     {
         $payload = [
             'parentMerchantNo' => $this->config->get('parent_merchant_no'),
-            'merchantNo' => $this->config->get('merchant_no'),
+            'merchantNo'       => $this->config->get('merchant_no'),
         ];
 
         $payload = array_merge($payload, $params);
@@ -59,7 +59,7 @@ class ProfitSharing extends AbstractGateway implements ProfitSharingGatewayInter
     {
         $payload = [
             'parentMerchantNo' => $this->config->get('parent_merchant_no'),
-            'merchantNo' => $this->config->get('merchant_no'),
+            'merchantNo'       => $this->config->get('merchant_no'),
         ];
 
         $payload = array_merge($payload, $params);
@@ -81,7 +81,7 @@ class ProfitSharing extends AbstractGateway implements ProfitSharingGatewayInter
     {
         $payload = [
             'parentMerchantNo' => $this->config->get('parent_merchant_no'),
-            'merchantNo' => $this->config->get('merchant_no'),
+            'merchantNo'       => $this->config->get('merchant_no'),
         ];
 
         $payload = array_merge($payload, $params);
@@ -93,8 +93,8 @@ class ProfitSharing extends AbstractGateway implements ProfitSharingGatewayInter
     {
         $payload = [
             'parentMerchantNo' => $this->config->get('parent_merchant_no'),
-            'merchantNo' => $this->config->get('merchant_no'),
-            'divideRequestId' => $this->config->get('merchant_no')
+            'merchantNo'       => $this->config->get('merchant_no'),
+            'divideRequestId'  => $this->config->get('merchant_no')
         ];
 
         $payload = array_merge($payload, $params);
@@ -106,8 +106,8 @@ class ProfitSharing extends AbstractGateway implements ProfitSharingGatewayInter
     {
         $payload = [
             'parentMerchantNo' => $this->config->get('parent_merchant_no'),
-            'merchantNo' => $this->config->get('merchant_no'),
-            'divideRequestId' => $this->config->get('merchant_no')
+            'merchantNo'       => $this->config->get('merchant_no'),
+            'divideRequestId'  => $this->config->get('merchant_no')
         ];
 
         $payload = array_merge($payload, $params);

@@ -14,22 +14,22 @@ class Pay extends AbstractGateway implements PayGatewayInterface
 {
     const PAY_URL = [
         'method' => 'post',
-        'url' => '/rest/v1.0/aggpay/pre-pay'
+        'url'    => '/rest/v1.0/aggpay/pre-pay'
     ];
 
     const CANCAL_URL = [
         'method' => 'post',
-        'url' => '/rest/v1.0/trade/order/close'
+        'url'    => '/rest/v1.0/trade/order/close'
     ];
 
     const QUERY_URL = [
         'method' => 'post',
-        'url' => '/rest/v1.0/trade/order/query'
+        'url'    => '/rest/v1.0/trade/order/query'
     ];
 
     const REFUND_URL = [
         'method' => 'post',
-        'url' => '/rest/v1.0/trade/refund'
+        'url'    => '/rest/v1.0/trade/refund'
     ];
 
     /**
@@ -40,7 +40,7 @@ class Pay extends AbstractGateway implements PayGatewayInterface
     {
         $payload = [
             'parentMerchantNo' => $this->config->get('parent_merchant_no'),
-            'merchantNo' => $this->config->get('merchant_no'),
+            'merchantNo'       => $this->config->get('merchant_no'),
         ];
 
         $payload = array_merge($payload, $params);
@@ -56,12 +56,12 @@ class Pay extends AbstractGateway implements PayGatewayInterface
     {
         $payload = [
             'parentMerchantNo' => $this->config->get('parent_merchant_no'),
-            'merchantNo' => $this->config->get('merchant_no'),
+            'merchantNo'       => $this->config->get('merchant_no'),
         ];
 
         $payload = array_merge($payload, $params);
 
-        return $this->request(self::CANCAL_URL,$payload);
+        return $this->request(self::CANCAL_URL, $payload);
     }
 
     /**
@@ -72,12 +72,12 @@ class Pay extends AbstractGateway implements PayGatewayInterface
     {
         $payload = [
             'parentMerchantNo' => $this->config->get('parent_merchant_no'),
-            'merchantNo' => $this->config->get('merchant_no'),
+            'merchantNo'       => $this->config->get('merchant_no'),
         ];
 
         $payload = array_merge($payload, $params);
 
-        return $this->request(self::QUERY_URL,$payload);
+        return $this->request(self::QUERY_URL, $payload);
     }
 
     /**
@@ -88,12 +88,12 @@ class Pay extends AbstractGateway implements PayGatewayInterface
     {
         $payload = [
             'parentMerchantNo' => $this->config->get('parent_merchant_no'),
-            'merchantNo' => $this->config->get('merchant_no'),
+            'merchantNo'       => $this->config->get('merchant_no'),
         ];
 
         $payload = array_merge($payload, $params);
 
-        return $this->request(self::REFUND_URL,$payload);
+        return $this->request(self::REFUND_URL, $payload);
     }
 
     /**

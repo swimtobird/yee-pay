@@ -4,7 +4,8 @@
     "require": {
       "php": ">=7.2",
       "guzzlehttp/guzzle": "^7.2",
-        "illuminate/support": "^7.30"
+        "illuminate/support": "^7.30",
+        "wechatpay/wechatpay-guzzle-middleware": "^0.2.1"
     },
     "authors": [
         {

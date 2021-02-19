@@ -74,7 +74,7 @@ class PayProvider
      */
     public function __call($method, array $arguments)
     {
-        if (!method_exists($this->gateway,$method)){
+        if (!method_exists($this->gateway, $method)) {
             throw new InvalidArgumentException("Sorry,it is not supported {$method} method now.");
         }
 
