@@ -102,7 +102,7 @@ abstract class AbstractGateway implements GatewayInterface
 
     public function createClient(): void
     {
-        $wechatpayMiddleware = WechatPayMiddleware::builder()
+        $wechatPayMiddleware = WechatPayMiddleware::builder()
             ->withMerchant(
                 $this->config->get('mch_id'),
                 $this->config->get('mch_number'),
@@ -112,7 +112,7 @@ abstract class AbstractGateway implements GatewayInterface
             ->build();
 
         $stack = HandlerStack::create();
-        $stack->push($wechatpayMiddleware, 'wechatpay');
+        $stack->push($wechatPayMiddleware, 'wechatpay');
 
         $this->client = new Client(['handler' => $stack]);
     }
