@@ -33,6 +33,11 @@ class ProfitSharing extends AbstractGateway implements ProfitSharingGatewayInter
         'url'    => '/rest/v2.0/mer/register/contribute/merchant'
     ];
 
+    const ADD_MICRO_RECEIVER_URL = [
+        'method' => 'post',
+        'url'    => '/rest/v2.0/mer/register/contribute/micro'
+    ];
+
     const REFUND_PROFIT_SHARING_URL = [
         'method' => 'post',
         'url'    => '/rest/v1.0/divide/back'
@@ -113,5 +118,10 @@ class ProfitSharing extends AbstractGateway implements ProfitSharingGatewayInter
         $payload = array_merge($payload, $params);
 
         return $this->request(self::QUERY_REFUND_PROFIT_SHARING_URL, $payload);
+    }
+
+    public function addMicroReceiver(array $params): array
+    {
+        return $this->request(self::ADD_MICRO_RECEIVER_URL, $params);
     }
 }
