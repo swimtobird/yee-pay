@@ -79,11 +79,11 @@ class H5 extends AbstractGateway implements PayGatewayInterface
 
     public function cancel(array $params): array
     {
-        // TODO: Implement cancel() method.
+        return [];
     }
 
     public function success(): string
     {
-        // TODO: Implement success() method.
+        return '';
     }
 }
