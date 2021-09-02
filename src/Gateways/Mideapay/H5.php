@@ -84,6 +84,6 @@ class H5 extends AbstractGateway implements PayGatewayInterface
 
     public function success(): string
     {
-        return '';
+        return 'success';
     }
 }
